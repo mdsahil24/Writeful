@@ -5,13 +5,31 @@ import { Link } from "react-router-dom";
 import { Avatar, Box, Button, Typography, Container } from "@mui/material";
 import { format } from "date-fns"; // Updated for custom date and time format
 
+const BASE_URL = "https://narrate-rouge.vercel.app";
+
+export const fetchPosts = async () => {
+  const response = await fetch(`${BASE_URL}/api/posts`);
+  return response.json();
+};
+
+export const createPost = async (postData) => {
+  const response = await fetch(`${BASE_URL}/api/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData),
+  });
+  return response.json();
+};
+
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`${BASE_URL}/post/${id}`) // Use the deployed backend URL
       .then((response) => {
         response.json().then((postInfo) => {
           setPostInfo(postInfo);
@@ -22,7 +40,7 @@ export default function PostPage() {
   if (!postInfo) return <p>Loading...</p>;
 
   return (
-    <Container maxWidth="md" sx={{ mt: -4 }}> {/* Shrink width to 'sm' */}
+    <Container maxWidth="md" sx={{ mt: -4 }}>
       <Box sx={{ width: '700px', margin: '0 auto' }}>
         {/* Title Section */}
         <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold' }}>
@@ -63,7 +81,7 @@ export default function PostPage() {
         {/* Image Section (Rectangle Shape) */}
         <Box mt={3}>
           <img
-            src={`http://localhost:4000/${postInfo.cover}`}
+            src={`${BASE_URL}/${postInfo.cover}`} // Use the deployed backend URL
             alt={postInfo.title}
             style={{ width: "100%", height: "auto", borderRadius: "8px", objectFit: "cover" }}
           />
