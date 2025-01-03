@@ -11,7 +11,7 @@ export default function PostPage() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.REACT_APP_BACKEND_BASE_URL}/post/${id}`)
+    fetch(`http://localhost:4000/post/${id}`)
       .then((response) => {
         response.json().then((postInfo) => {
           setPostInfo(postInfo);
@@ -63,7 +63,7 @@ export default function PostPage() {
         {/* Image Section (Rectangle Shape) */}
         <Box mt={3}>
           <img
-            src={`${import.meta.env.REACT_APP_BACKEND_BASE_URL}/${postInfo.cover}`}
+            src={`http://localhost:4000/${postInfo.cover}`}
             alt={postInfo.title}
             style={{ width: "100%", height: "auto", borderRadius: "8px", objectFit: "cover" }}
           />

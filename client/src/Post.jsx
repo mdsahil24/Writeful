@@ -23,7 +23,7 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
         <CardMedia
           component="img"
           height="250"
-          image={`${import.meta.env.REACT_APP_BACKEND_BASE_URL}/${cover}`}
+          image={`http://localhost:4000/${cover}`}
           alt={title}
           sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
         />
