@@ -20,3 +20,7 @@ Express: For creating robust APIs.
 
 **Database** ->
 MongoDB: For storing user data and articles/blogs.
+
+### Deployment 🚀
+This Website is hosted on Vercel. You can access it here
+
