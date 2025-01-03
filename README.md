@@ -11,12 +11,12 @@ Writeful is a dynamic and user-friendly article/blog posting platform where user
 
 ### Tech Stack ⚙️
 
-**Frontend**
+**Frontend** ->
 React: For building a fast and interactive user interface.
 
-**Backend**
+**Backend** ->
 Node.js: For handling server-side operations.
 Express: For creating robust APIs.
 
-**Database**
+**Database** ->
 MongoDB: For storing user data and articles/blogs.
