@@ -24,3 +24,6 @@ MongoDB: For storing user data and articles/blogs.
 ### Deployment 🚀
 This Website is hosted on Vercel. You can access it here
 
+![Screenshot 2025-01-03 124718](https://github.com/user-attachments/assets/ecc3ef88-e82f-465d-b360-602babaac879)
+![Screenshot 2025-01-03 124832](https://github.com/user-attachments/assets/8ee292ca-2e48-450a-aaad-d8500a67522c)
+
