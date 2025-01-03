@@ -43,7 +43,7 @@ export default function LoginPage() {
 
       {/* New to the site? description */}
       <div className="new-to-site">
-        <p>Don't have an account? <a href="/register">Join Describe</a></p>
+        <p>Don't have an account? <a href="/register">Join Writeful</a></p>
       </div>
     </form>
   );

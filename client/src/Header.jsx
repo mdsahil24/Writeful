@@ -51,7 +51,7 @@ export default function Header() {
           {/* Logo */}
           <Typography variant="h4" component="div" sx={{ fontWeight: "bold" }}>
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-              Narrative
+              Writeful
             </Link>
           </Typography>
 

@@ -42,7 +42,7 @@ export default function RegisterPage() {
 
   return (
     <form className="register" onSubmit={register}>
-      <h1>Join Narrative</h1>
+      <h1>Join Writeful</h1>
       <input
         type="text"
         placeholder="Username"
