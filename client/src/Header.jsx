@@ -9,7 +9,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -19,7 +19,7 @@ export default function Header() {
   }, [setUserInfo]);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });
@@ -39,10 +39,10 @@ export default function Header() {
   return (
     <AppBar
       position="sticky"
-      elevation={0} // Removes shadow for a cleaner look
+      elevation={0}
       sx={{
         backgroundColor: "white",
-        borderBottom: "1px solid rgba(0, 0, 0, 0.1)", // Light gray line
+        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
         color: "black",
       }}
     >
@@ -61,35 +61,34 @@ export default function Header() {
               <>
                 {/* Create Post Button */}
                 <Link to="/create" style={{ textDecoration: "none", marginRight: -40 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#6A1B9A", // Custom color (purple)
-                    borderRadius: "18px", // Rounded corners
-                    padding: "5px 25px", // Adjust padding for size
-                    fontSize: "12px", // Adjust font size
-                    transition: "0.3s",
-                    "&:hover": {
-                      backgroundColor: "#4A148C", // Hover color
-                      transform: "scale(1.02)", // Slight zoom effect
-                    },
-                  }}
-                  startIcon={<PostAdd />}
-                >
-                  CreatePost
-                </Button>
-
-                </Link >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#6A1B9A",
+                      borderRadius: "18px",
+                      padding: "5px 25px",
+                      fontSize: "12px",
+                      transition: "0.3s",
+                      "&:hover": {
+                        backgroundColor: "#4A148C",
+                        transform: "scale(1.02)",
+                      },
+                    }}
+                    startIcon={<PostAdd />}
+                  >
+                    CreatePost
+                  </Button>
+                </Link>
 
                 {/* Profile Avatar and Dropdown Menu */}
                 <IconButton 
                   onClick={handleMenuOpen} 
                   sx={{
-                    padding: 0, // Remove all padding
-                    background: "none", // Remove any background
-                    borderRadius: "50%", // Keep the button circular
+                    padding: 0, 
+                    background: "none", 
+                    borderRadius: "50%",
                     "&:hover": {
-                      background: "none", // Remove hover background
+                      background: "none", 
                     },
                   }}
                   disableRipple
@@ -98,22 +97,21 @@ export default function Header() {
                 >
                   <Avatar
                     sx={{
-                      bgcolor: "#6A1B9A", // Background color
-                      color: "white", // Text color
-                      width: 35, // Width of the avatar
-                      height: 35, // Height of the avatar
-                      fontSize: "15px", // Font size for the initials
-                      cursor: "pointer", // Pointer cursor for hover
-                      transition: "0.3s", // Smooth transition effect
+                      bgcolor: "#6A1B9A",
+                      color: "white",
+                      width: 35,
+                      height: 35,
+                      fontSize: "15px",
+                      cursor: "pointer",
+                      transition: "0.3s",
                       "&:hover": {
-                        bgcolor: "#4A148C", // Darker purple on hover
-                        transform: "scale(1.05)", // Slight zoom effect
+                        bgcolor: "#4A148C",
+                        transform: "scale(1.05)",
                       },
                     }}
                   >
                     {userInfo.username.charAt(0).toUpperCase()}
                   </Avatar>
-
                 </IconButton>
 
                 {/* Dropdown Menu */}
@@ -129,19 +127,19 @@ export default function Header() {
                     vertical: 'top',
                     horizontal: 'right',
                   }}
-                  disableRestoreFocus // Prevent lingering focus
+                  disableRestoreFocus
                   sx={{
                     mt: 1,
                     "& .MuiPaper-root": {
-                      backgroundColor: "#F5F5F5", // Dropdown background color
-                      color: "black", // Text color
-                      borderRadius: "10px", // Rounded corners
-                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Subtle shadow
+                      backgroundColor: "#F5F5F5",
+                      color: "black",
+                      borderRadius: "10px",
+                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                     },
                     "& .MuiMenuItem-root": {
-                      fontSize: "16px", // Font size for menu items
+                      fontSize: "16px",
                       "&:hover": {
-                        backgroundColor: "#E0E0E0", // Hover effect
+                        backgroundColor: "#E0E0E0",
                       },
                     },
                   }}
@@ -151,8 +149,6 @@ export default function Header() {
                     Logout
                   </MenuItem>
                 </Menu>
-
-
               </>
             ) : (
               <>
@@ -162,15 +158,15 @@ export default function Header() {
                     variant="outlined"
                     color="inherit"
                     sx={{
-                      bgcolor: "#6A1B9A", // Background color
-                      color: "white", // Text color
-                      fontSize: "12px", // Font size for the text
-                      borderRadius: "18px", // Rounded corners
-                      padding: "5px 25px", // Adjust padding for size
-                      transition: "0.3s", // Smooth transition effect
+                      bgcolor: "#6A1B9A",
+                      color: "white",
+                      fontSize: "12px",
+                      borderRadius: "18px",
+                      padding: "5px 25px",
+                      transition: "0.3s",
                       "&:hover": {
-                        bgcolor: "#4A148C", // Darker purple on hover
-                        transform: "scale(1.05)", // Slight zoom effect
+                        bgcolor: "#4A148C",
+                        transform: "scale(1.05)",
                       },
                     }}
                   >
@@ -184,13 +180,13 @@ export default function Header() {
                     sx={{
                       bgcolor: "6A1B9A",
                       color: "white",
-                      borderRadius: "18px", // Rounded corners
-                      padding: "5px 25px", // Adjust padding for size
-                      fontSize: "12px", // Font size for the text
-                      transition: "0.3s", // Smooth transition effect
+                      borderRadius: "18px",
+                      padding: "5px 25px",
+                      fontSize: "12px",
+                      transition: "0.3s",
                       "&:hover": {
-                        backgroundColor: "#4A148C", // Darker red on hover (for secondary color)
-                        transform: "scale(1.05)", // Slight zoom effect
+                        backgroundColor: "#4A148C",
+                        transform: "scale(1.05)",
                       },
                     }}
                   >
@@ -203,8 +199,5 @@ export default function Header() {
         </Toolbar>
       </Container>
     </AppBar>
-
-
-
   );
 }

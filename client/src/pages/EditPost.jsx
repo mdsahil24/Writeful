@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
-import {Navigate, useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
 
 export default function EditPost() {
-  const {id} = useParams();
-  const [title,setTitle] = useState('');
-  const [summary,setSummary] = useState('');
-  const [content,setContent] = useState('');
+  const { id } = useParams();
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
+  const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
-  const [redirect,setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:4000/post/'+id)
+    fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/post/${id}`)  // Use directly in the URL
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -19,7 +19,7 @@ export default function EditPost() {
           setSummary(postInfo.summary);
         });
       });
-  }, []);
+  }, [id]);
 
   async function updatePost(ev) {
     ev.preventDefault();
@@ -31,7 +31,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('http://localhost:4000/post', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/post`, {  // Use directly in the URL
       method: 'PUT',
       body: data,
       credentials: 'include',
@@ -42,7 +42,7 @@ export default function EditPost() {
   }
 
   if (redirect) {
-    return <Navigate to={'/post/'+id} />
+    return <Navigate to={`/post/${id}`} />
   }
 
   return (

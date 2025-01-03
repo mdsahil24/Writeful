@@ -15,7 +15,9 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
   const formattedDate = format(new Date(createdAt), "MMM dd, yyyy");
   const formattedTime = format(new Date(createdAt), "hh:mm a");
 
-  
+  // Set up default image URL using environment variable
+  const imageUrl = `${process.env.REACT_APP_BACKEND_BASE_URL}/${cover}`;
+
   return (
     <Card sx={{ margin: 5, boxShadow: 3, borderRadius: 4 }}>
       {/* Image Section */}
@@ -23,8 +25,9 @@ export default function Post({ _id, title, summary, cover, content, createdAt, a
         <CardMedia
           component="img"
           height="250"
-          image={`http://localhost:4000/${cover}`}
+          image={imageUrl} // Using dynamic image URL
           alt={title}
+          onError={(e) => e.target.src = 'https://via.placeholder.com/250'} // Placeholder image on error
           sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
         />
       </Link>
