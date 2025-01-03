@@ -9,7 +9,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch(`${import.meta.env.REACT_APP_BACKEND_BASE_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -19,7 +19,7 @@ export default function Header() {
   }, [setUserInfo]);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${import.meta.env.REACT_APP_BACKEND_BASE_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });
