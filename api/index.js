@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -37,7 +38,8 @@ const uploadMiddleware = multer({
 });
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+const secret = process.env.JWT_SECRET; // JWT secret from .env
+const mongoUri = process.env.MONGO_URI; // MongoDB URI from .env
 
 // Middleware
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
@@ -47,9 +49,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // MongoDB Connection
 mongoose.set('strictQuery', true);
-mongoose.connect(
-  'mongodb+srv://mohammadsahil0316:IP8HdFyrlhXMnVdy@cluster0.xwwz1.mongodb.net/?retryWrites=true&w=majority'
-).then(() => {
+mongoose.connect(mongoUri).then(() => {
     console.log('MongoDB connection successful');
   })
   .catch((err) => {
